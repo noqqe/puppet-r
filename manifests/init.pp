@@ -1,14 +1,13 @@
-class r {
+class r ( $version = 'installed' ) {
 
-  case $osfamily {
+  case $::osfamily {
     'Debian': {
-      package {"r-base": ensure => installed}
+      package {'r-base': ensure => $version }
     }
     'RedHat': {
-      package {"R-core": ensure => installed}
+      package {'R-core': ensure => $version }
     }
-    default: { fail("Not supported on osfamily $osfamily") }
+    default: { fail("Not supported on osfamily ${::osfamily}") }
   }
 
 }
-
