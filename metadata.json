@@ -1,0 +1,30 @@
+{
+  "name": "sessionm/puppet_r",
+  "version": "0.0.1",
+  "author": "Nick",
+  "license": "Apache-2.0",
+  "summary": "A module ror installing R",
+  "source": "https://github.com/sessionm/puppet-r",
+  "project_page": "https://github.com/sessionm/puppet-r",
+  "issues_url": "https://github.com/sessionm/puppet-r/issues",
+  "tags": ["R", "install", "Ubuntu", "RedHat"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem":"RedHat",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ 
+        "12.04",
+        "14.04"
+     ]
+    }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0" }
+  ]
+}
