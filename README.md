@@ -20,7 +20,11 @@ Then define any packages you want to be installed...
 To ensure that dependencies are resolved for packages...
 
     ::r::package { 'reshape': dependencies => true, }
+    
+If a different repo is needed then it must be given as an array, also,
+an array of different repos can be given.
 
-To configure R for use with Java packages...
+    ::r::package { 'ggplot2': repo => ['http://cran.rstudio.com', ], }
 
-    include ::r::java_conf
+    ::r::package { 'datashieldclient': repo => ['http://cran.obiba.org', 'http://cran.rstudio.com'], 
+    dependencies => true, }
