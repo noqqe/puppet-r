@@ -1,12 +1,12 @@
 {
-  "name": "sessionm/puppet_r",
-  "version": "0.0.1",
-  "author": "Nick",
+  "name": "nparley/puppet_r",
+  "version": "0.0.2",
+  "author": "Neil",
   "license": "Apache-2.0",
   "summary": "A module ror installing R",
-  "source": "https://github.com/sessionm/puppet-r",
-  "project_page": "https://github.com/sessionm/puppet-r",
-  "issues_url": "https://github.com/sessionm/puppet-r/issues",
+  "source": "https://github.com/nparley/puppet-r",
+  "project_page": "https://github.com/nparley/puppet-r",
+  "issues_url": "https://github.com/nparley/puppet-r/issues",
   "tags": ["R", "install", "Ubuntu", "RedHat"],
   "operatingsystem_support": [
     {
