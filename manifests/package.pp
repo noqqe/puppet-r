@@ -8,7 +8,7 @@ define r::package($r_path = '/usr/bin/R', $repo = ['http://cran.rstudio.com',], 
       true    => "${r_path} -e \"install.packages('${name}', repos=c('${repos}'), dependencies = TRUE); library(${name})\"",
       default => "${r_path} -e \"install.packages('${name}', repos=c('${repos}'), dependencies = FALSE); library(${name})\""
     },
-    unless  => "${r_path} -q -e '\"${name}\" %in% installed.packages()' | grep 'TRUE'",
+    unless  => "${r_path} -q -e \"library(${name})\"",
     require => Class['::r']
   }
 
