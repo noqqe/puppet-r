@@ -1,7 +1,7 @@
 {
   "name": "nparley/puppet_r",
   "version": "0.0.2",
-  "author": "Neil",
+  "author": "Neil Parley",
   "license": "Apache-2.0",
   "summary": "A module ror installing R",
   "source": "https://github.com/nparley/puppet-r",
