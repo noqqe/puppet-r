@@ -1,4 +1,4 @@
-class r::install ( $version = 'installed' ) {
+class r::install ( $version = 'latest' ) {
 
   include r::repository
 
