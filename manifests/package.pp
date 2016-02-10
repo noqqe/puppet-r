@@ -1,3 +1,32 @@
+# Type: r::package
+# ===========================
+#
+# Installs an R package into the R system
+#
+# Parameters
+# ----------
+#
+# * `r_path`
+# Path where R is installed. Default is '/usr/bin/R'
+# * `repo`
+# Array of the repos to search for the package in. Default ['http://cran.rstudio.com',]
+# * `dependencies`
+# If the package dependencies should be also. Default is false.
+#
+# Examples
+# --------
+#
+# @example
+#    r::package { 'reshape':
+#                 dependencies => true,
+#               }
+#
+# Authors
+# -------
+#
+# Neil Parley
+#
+
 define r::package($r_path = '/usr/bin/R', $repo = ['http://cran.rstudio.com',], $dependencies = false) {
 
   $repos = join($repo, "\' ,'")

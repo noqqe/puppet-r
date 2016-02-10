@@ -1,3 +1,22 @@
+# Class: r::repository
+# ===========================
+#
+# Installs the yum and apt-get source repo for R
+#
+#
+# Examples
+# --------
+#
+# @example
+#    class { 'r::repository':
+#    }
+#
+# Authors
+# -------
+#
+# Neil Parley
+#
+
 class r::repository {
 
   case $::operatingsystem {
