@@ -38,6 +38,7 @@ define r::package($r_path = '/usr/bin/R', $repo = ['http://cran.rstudio.com',], 
       default => "${r_path} -e \"install.packages('${name}', repos=c('${repos}'), dependencies = FALSE); library(${name})\""
     },
     unless  => "${r_path} -q -e \"library(${name})\"",
+    timeout => 600,
     require => Class['::r']
   }
 
