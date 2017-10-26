@@ -18,28 +18,54 @@
 #
 # @example
 #    r::package { 'reshape':
-#                 dependencies => true,
-#               }
+#      dependencies => true,
+#    }
 #
 # Authors
 # -------
 #
+# Florian Baumann
 # Neil Parley
 #
 
-define r::package($r_path = '/usr/bin/R', $repo = ['http://cran.rstudio.com',], $dependencies = false) {
+define r::package (
+  $version, 
+  $repo = 'http://cran.rstudio.com',
+  $dependencies = false,
+) {
 
-  $repos = join($repo, "\' ,'")
   include ::r
 
-  exec { "install_r_package_${name}":
-    command => $dependencies ? {
-      true    => "${r_path} -e \"install.packages('${name}', repos=c('${repos}'), dependencies = TRUE); library(${name})\"",
-      default => "${r_path} -e \"install.packages('${name}', repos=c('${repos}'), dependencies = FALSE); library(${name})\""
-    },
-    unless  => "${r_path} -q -e \"library(${name})\"",
-    timeout => 600,
-    require => Class['::r']
+  if $version {
+    # we need to make sure that devtools pkg is present to install custom
+    # versioned packages of R
+    if !defined (Exec['install_devtools_pkg']){
+      exec { "install_devtools_pkg":
+        command =>  "R -e \"install.packages('devtools', repos='${repo}', dependencies=TRUE)\"",
+        path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+        timeout => 600,
+        unless  => "R -q -e '\"devtools\" %in% installed.packages()' | grep 'TRUE'",
+        require => Package['libcurl4-openssl-dev'],
+      }
+    }
+
+    exec { "install_r_custom_version_package_${name}":
+      command => "R -e \"require('devtools') ; install_version('${name}', version='${version}', repos='${repo}')\"",
+      path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+      timeout => 600,
+      unless  => "R -q -e '\"${name}\" %in% installed.packages()' | grep 'TRUE'",
+      require => Exec['install_devtools_pkg'],
+    }
+
+  }
+  else{
+    exec { "install_r_package_${name}":
+      command => "R -e \"install.packages('${name}', repos='${repo}', dependencies = ${_deps})\"",
+      path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+      timeout => 600,
+      unless  => "R -q -e '\"${name}\" %in% installed.packages()' | grep 'TRUE'",
+      require => Package['r-base'],
+    }
   }
 
 }
