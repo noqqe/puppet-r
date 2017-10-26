@@ -45,7 +45,6 @@ define r::package (
         path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
         timeout => 600,
         unless  => "R -q -e '\"devtools\" %in% installed.packages()' | grep 'TRUE'",
-        require => Package['libcurl4-openssl-dev'],
       }
     }
 
