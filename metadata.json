@@ -1,13 +1,13 @@
 {
-  "name": "nparley/puppet_r",
+  "name": "noqqe/r",
   "version": "0.0.2",
   "author": "Neil Parley",
   "license": "Apache-2.0",
   "summary": "A module ror installing R",
-  "source": "https://github.com/nparley/puppet-r",
-  "project_page": "https://github.com/nparley/puppet-r",
-  "issues_url": "https://github.com/nparley/puppet-r/issues",
-  "tags": ["R", "install", "Ubuntu", "RedHat"],
+  "source": "https://github.com/noqqe/puppet-r",
+  "project_page": "https://github.com/noqqe/puppet-r",
+  "issues_url": "https://github.com/noqqe/puppet-r/issues",
+  "tags": ["R", "Rlang", "Ubuntu", "RedHat", "Debian"],
   "operatingsystem_support": [
     {
       "operatingsystem":"RedHat",
@@ -17,8 +17,16 @@
       ]
     },
     {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7",
+        "8",
+        "9"
+     ]
+    },
+    {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ 
+      "operatingsystemrelease": [
         "12.04",
         "14.04"
      ]
