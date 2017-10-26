@@ -28,5 +28,5 @@ class r ( $version = 'latest' ) {
 
   class {'r::install': version => $version }
   contain 'r::install'
-  
+
 }

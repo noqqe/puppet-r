@@ -32,6 +32,9 @@ class r::install ( $version = 'latest' ) {
   include r::repository
 
   case $::operatingsystem {
+    'Debian': {
+      Class['r::repository'] ->  Class["apt::update"] -> package {'r-base': ensure => $version, } -> package {'r-base-dev': ensure => $version}
+    }
     'Ubuntu': {
       Class['r::repository'] ->  Class["apt::update"] -> package {'r-base': ensure => $version, } -> package {'r-base-dev': ensure => $version}
     }
