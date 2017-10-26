@@ -29,9 +29,9 @@
 #
 
 define r::package (
-  $version, 
-  $repo = 'http://cran.rstudio.com',
-  $dependencies = false,
+  Variant[String, Undef] $version = undef,
+  String $repo = 'http://cran.rstudio.com',
+  Boolean $dependencies = false,
 ) {
 
   include ::r
