@@ -3,17 +3,16 @@
 #
 # Installs the yum and apt-get source repo for R
 #
-#
 # Examples
 # --------
 #
 # @example
-#    class { 'r::repository':
-#    }
+#    class { 'r::repository': }
 #
 # Authors
 # -------
 #
+# Florian Baumann
 # Neil Parley
 #
 
@@ -23,7 +22,7 @@ class r::repository {
     /^(Debian|Ubuntu)$/: {
       include ::apt
       $os = downcase($::operatingsystem)
-      apt::source { 'r-project':
+      apt::source { 'cran':
         location   => "http://cran.r-project.org/bin/linux/${os}",
         release    => "${::lsbdistcodename}/",
         repos      => '',
